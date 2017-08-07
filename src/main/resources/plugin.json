@@ -1,0 +1,6 @@
+{
+    "name": "file",
+    "mainClass": "ch.jamiete.hilda.file.FilePlugin",
+    "version": "${pom.version}",
+    "author": "jamietech"
+}
