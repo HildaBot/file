@@ -35,7 +35,7 @@ public class FileListener {
     }
 
     public void delete(final Message message) {
-        message.delete().queue(s -> {
+        message.delete().reason("I deleted this message because it breached a file prohibition.").queue(s -> {
             // Nothing
         }, f -> {
             // Nothing
