@@ -26,7 +26,7 @@ import ch.jamiete.hilda.commands.ChannelSeniorCommand;
 import ch.jamiete.hilda.commands.ChannelSubCommand;
 import ch.jamiete.hilda.configuration.Configuration;
 import ch.jamiete.hilda.file.FilePlugin;
-import net.dv8tion.jda.core.entities.Message;
+import net.dv8tion.jda.api.entities.Message;
 
 public class FileListCommand extends ChannelSubCommand {
     private final FilePlugin plugin;
@@ -50,11 +50,9 @@ public class FileListCommand extends ChannelSubCommand {
             return;
         }
 
-        final List<String> blacklisted = new ArrayList<String>();
-        final Iterator<JsonElement> iterator = array.iterator();
+        final List<String> blacklisted = new ArrayList<>();
 
-        while (iterator.hasNext()) {
-            final JsonElement element = iterator.next();
+        for (JsonElement element : array) {
             blacklisted.add(element.getAsString());
         }
 

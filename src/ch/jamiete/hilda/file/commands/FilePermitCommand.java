@@ -25,9 +25,8 @@ import ch.jamiete.hilda.commands.ChannelSeniorCommand;
 import ch.jamiete.hilda.commands.ChannelSubCommand;
 import ch.jamiete.hilda.configuration.Configuration;
 import ch.jamiete.hilda.file.FilePlugin;
-import net.dv8tion.jda.core.MessageBuilder;
-import net.dv8tion.jda.core.MessageBuilder.SplitPolicy;
-import net.dv8tion.jda.core.entities.Message;
+import net.dv8tion.jda.api.MessageBuilder;
+import net.dv8tion.jda.api.entities.Message;
 
 public class FilePermitCommand extends ChannelSubCommand {
     private final FilePlugin plugin;
@@ -51,8 +50,8 @@ public class FilePermitCommand extends ChannelSubCommand {
             return;
         }
 
-        final List<String> removed = new ArrayList<String>();
-        final List<String> ignored = new ArrayList<String>();
+        final List<String> removed = new ArrayList<>();
+        final List<String> ignored = new ArrayList<>();
 
         for (String arg : args) {
             arg = arg.toLowerCase();
@@ -98,7 +97,7 @@ public class FilePermitCommand extends ChannelSubCommand {
 
         mb.append("!");
 
-        mb.buildAll(SplitPolicy.SPACE).forEach(m -> this.reply(message, m));
+        mb.buildAll(MessageBuilder.SplitPolicy.SPACE).forEach(m -> this.reply(message, m));
     }
 
 }

@@ -22,10 +22,9 @@ import com.google.gson.JsonElement;
 import ch.jamiete.hilda.configuration.Configuration;
 import ch.jamiete.hilda.events.EventHandler;
 import ch.jamiete.hilda.file.FilePlugin;
-import net.dv8tion.jda.core.Permission;
-import net.dv8tion.jda.core.entities.Message;
-import net.dv8tion.jda.core.entities.Message.Attachment;
-import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
+import net.dv8tion.jda.api.Permission;
+import net.dv8tion.jda.api.entities.Message;
+import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 public class FileListener {
     private final FilePlugin plugin;
@@ -56,13 +55,10 @@ public class FileListener {
             return;
         }
 
-        final List<Attachment> attachments = event.getMessage().getAttachments();
+        final List<Message.Attachment> attachments = event.getMessage().getAttachments();
 
-        final Iterator<JsonElement> iterator = array.iterator();
-        while (iterator.hasNext()) {
-            final JsonElement element = iterator.next();
-
-            for (final Attachment attachment : attachments) {
+        for (JsonElement element : array) {
+            for (final Message.Attachment attachment : attachments) {
                 if (!attachment.getFileName().contains(".") && element.getAsString().equals("$BLANK")) {
                     this.delete(event.getMessage());
                     return;
